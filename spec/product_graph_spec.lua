@@ -82,5 +82,24 @@ describe("product_graph", function()
         },
       }
     }
+
+    it("requires 2 ingredents", function()
+      local actual = product_graph.find_dependency("decider-combinator", recipes)
+      local expected = {
+        name="decider-combinator",
+        items={
+          {
+            name="copper-cable",
+            items={}
+          },
+          {
+            name="electronic-circuit",
+            items={}
+          }
+        }
+      }
+
+      assert.are.same(expected, actual)
+    end)
   end)
 end)
