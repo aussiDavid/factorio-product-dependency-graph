@@ -3,8 +3,7 @@ local product_graph = require("product_graph")
 describe("product_graph", function()
   describe("when the product is not listed", function()
     local recipes = { 
-      {
-        name = "iron-plate",
+      ["iron-plate"] = {
         ingredients = {{"iron-ore", 1}}
       }
     }
@@ -22,8 +21,7 @@ describe("product_graph", function()
 
   describe("when the recipe contains 1 ingredent", function()
     local recipes = { 
-      {
-        name = "iron-plate",
+      ["iron-plate"] = {
         ingredients = {{"iron-ore", 1}}
       }
     }
@@ -46,8 +44,7 @@ describe("product_graph", function()
 
   describe("when the recipe contains a normal mode", function()
     local recipes = { 
-      {
-        name = "steel-plate",
+      ["steel-plate"] = {
         normal =
         {
           ingredients = {{"iron-plate", 5}},
@@ -71,10 +68,9 @@ describe("product_graph", function()
     end)
   end)
 
-  describe("when the recipe contains 2 ingredents", function()
+  describe("when the recipe contains 2 ingredients", function()
     local recipes = { 
-      {
-        name = "decider-combinator",
+      ["decider-combinator"] = {
         ingredients =
         {
           {"copper-cable", 5},
@@ -83,7 +79,7 @@ describe("product_graph", function()
       }
     }
 
-    it("requires 2 ingredents", function()
+    it("requires 2 ingredients", function()
       local actual = product_graph.find_dependency("decider-combinator", recipes)
       local expected = {
         name="decider-combinator",
@@ -94,6 +90,54 @@ describe("product_graph", function()
           },
           {
             name="electronic-circuit",
+            items={}
+          }
+        }
+      }
+
+      assert.are.same(expected, actual)
+    end)
+  end)
+
+  describe("when the recipe contains fluid ingredients", function()
+    local recipes = { 
+      ["rocket-fuel"] = {
+        ingredients =
+        {
+          {"solid-fuel", 10},
+          {type="fluid", name="light-oil", amount=10}
+        }
+      }
+    }
+
+    it("requires 2 ingredients", function()
+      local actual = product_graph.find_dependency("rocket-fuel", recipes)
+      local expected = {
+        name="rocket-fuel",
+        items={
+          {
+            name="solid-fuel",
+            items={}
+          },
+          {
+            name="light-oil",
+            items={}
+          }
+        }
+      }
+
+      assert.are.same(expected, actual)
+    end)
+  end)
+
+  describe("when the recipes are not specified", function()
+    it("requires 1 ingredient", function()
+      local actual = product_graph.find_dependency("iron-plate")
+      local expected = {
+        name="iron-plate",
+        items={
+          {
+            name="iron-ore",
             items={}
           }
         }
