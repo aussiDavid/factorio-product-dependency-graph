@@ -17,7 +17,7 @@ test_dependencies = {
 build = {
    type = "builtin",
    modules = {
-      ["product_graph"] = "src/product_graph.lua"
+      product_graph = "src/product_graph.lua"
    }
 }
 rockspec_format = "3.0"
