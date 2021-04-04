@@ -1,10 +1,10 @@
-package = "product-dependency"
-version = "dev-1"
+package = "factorio-product-dependency-graph"
+version = "0.1.0"
 source = {
-   url = "*** please add URL for source tarball, zip or repository here ***"
+   url = "https://github.com/aussiDavid/factorio-product-dependency-graph"
 }
 description = {
-   homepage = "*** please enter a project homepage ***",
+   homepage = "https://github.com/aussiDavid/factorio-product-dependency-graph",
    license = "MIT"
 }
 test = {
@@ -13,6 +13,9 @@ test = {
 }
 test_dependencies = {
  "luacov > 0.1"
+}
+dependencies = {
+ "json-lua >= 0.1-3"
 }
 build = {
    type = "builtin",
