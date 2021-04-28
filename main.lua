@@ -14,10 +14,10 @@ if not product_name then
 Generates the dependencies for a PRODUCT_NAME in JSON format.
 
 Usage:
-  lua scratch.lua PRODUCT_NAME
+  lua main.lua PRODUCT_NAME
 
 Example:
-  $ lua scratch.lua "steel-plate"
+  $ lua main.lua "steel-plate"
 
   {
     "items": [ {
