@@ -23,10 +23,6 @@ local function ingredients_for(product)
     ingredients = product.normal.ingredients
   end
 
-  if product.normal and product.normal.ingredients then
-    ingredients = product.normal.ingredients
-  end
-
   return Map(ingredients, ingredient_name)
 end
 
