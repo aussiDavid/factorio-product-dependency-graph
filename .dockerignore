@@ -1,0 +1,8 @@
+.luarocks
+.vscode
+lua_modules
+.dockerignore
+.gitignore
+lua
+luacov.stats.out
+luarocks

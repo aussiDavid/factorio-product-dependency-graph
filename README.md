@@ -3,22 +3,14 @@
 
 ## Description
 
-A layer of an application to generate a factorio blueprint for a product. Given a provided product (e.g. steel-plate), this dependancy graph module lists all required products down to the raw ingredients. Executing the main script displays the output in JSON format.
+An application to generate a Factorio blueprint for a product. Given a product (e.g. steel-plate), this dependancy graph application lists all required products down to the raw ingredients. The program displays the output in JSON format.
 
-## Installation
-
-```bash
-$ luarocks build
-
-product-dependency 0.1.0 is now installed in /home/$HOME/product-dependency/./lua_modules (license: MIT)
-```
-  
 ## Usage
 
-Execute the main script in the command line.
+Execute the program in a docker container.
 
 ```bash
-$ ./main.lua steel-plate
+$ docker run --rm aussidavid/factorio-product-dependency-graph steel-plate
 
 {
   "items": [ {
@@ -42,9 +34,17 @@ local product_graph = require "product_graph"
 product_graph.find_dependency("steel-plate")
 ```
 
-Replace `path/to/repository` above to the path to the repostory containing this code. See `main.lua` for an example.
+Replace `path/to/repository` above to the path to the repostory containing this code. See `main.lua` for an example. Replace the strin g, `steel-plate`, with the item generate the dependency graph.
 
 ## Testing
+
+Build the lua project.
+
+```bash
+$ luarocks build
+
+product-dependency 0.1.0 is now installed in /home/$HOME/product-dependency/./lua_modules (license: MIT)
+```
 
 Use `luarocks` to run the test suite.
 
